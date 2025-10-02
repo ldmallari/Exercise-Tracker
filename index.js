@@ -44,10 +44,10 @@ app.post('/api/users', async (req, res) => {
     const user = new User({ username })
     await user.save()
     
-    res.json({
+    res.send(JSON.stringify({
       username: user.username,
       _id: user._id
-    })
+    }))
   } catch (error) {
     if (error.code === 11000) {
       res.status(400).json({ error: 'Username already exists' })
